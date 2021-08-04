@@ -75,7 +75,10 @@ local function printLiquids()
 			if(item.name == fluid.name) then itemexists = true end
 		end
 
-		if(item.tocraft > 0) then itemexists = true end
+        if (not itemexists) and (item.tocraft > 0) then
+            item.amount = 0
+		    itemexists = true
+		end
 
 		if itemexists then
 			local tab = ""
