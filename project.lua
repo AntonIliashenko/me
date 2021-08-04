@@ -5,6 +5,31 @@ local term = require("term")
 
 local maintable = {}
 
+local function initializeMaintable()
+
+    local file = io.open("home/table", "r")
+
+    if file == nil then maintable = {}
+    elses
+        for line in file:lines() do
+            local f,r = line:match("(%w+)(.+)")
+            maintable[f] = {}
+            maintable[f].name = f
+
+            local words = {}
+            for word in line:gmatch("%w+") do table.insert(words,word) end
+
+            maintable[f].amount = words[2]
+            maintable[f].tocraft = words[3]
+            maintable[f].mode = words[4]
+            maintable[f].address = words[5]
+            maintable[f].status = words[6]
+        end
+     end
+
+
+end
+
 local function getFluidFromMaintable(tempFluidName)
 	if maintable[tempFluidName] == nil then
 		maintable[tempFluidName] = {}
@@ -244,6 +269,7 @@ local function turnOffAllSignals()
 	end
 end
 
+initializeMaintable()
 
 while toRun do
 	
