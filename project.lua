@@ -197,7 +197,7 @@ local function keyPressed(name , address, num1, num2, player)
 						local newvalue = tonumber(myRead())
 
 						if newvalue ~= nil and newvalue >= 0 then
-							maintable[fluidToChange].tocraft = tonumber(newvalue)
+							getFluidFromMaintable(fluidToChange).tocraft = tonumber(newvalue)
 							print("Amount to craft of ", fluidToChange, " has been changed to ", newvalue)
 						else
 							print("Please provide a non-negative number")
@@ -210,7 +210,7 @@ local function keyPressed(name , address, num1, num2, player)
 						local tempProxy = component.proxy(newvalue)
 						
 						if tempProxy ~= nil and tempProxy.type == "redstone" then
-							maintable[fluidToChange].address = newvalue
+							getFluidFromMaintable(fluidToChange).address = newvalue
 							print("Address of ", fluidToChange, " has been changed to ", newvalue)
 						else print("Wrong address!")
 						end
@@ -220,13 +220,13 @@ local function keyPressed(name , address, num1, num2, player)
 						print("Choose one: 1: to demand, 2: on, 3: off")
 						local option = myRead()
 						if option == "1" then
-							maintable[fluidToChange].mode = "toDemand"
+							getFluidFromMaintable(fluidToChange).mode = "toDemand"
 							print("Mode of ", fluidToChange, " has been changed to to-Demand")
 						elseif option == "2" then
-							maintable[fluidToChange].mode = "ON"
+							getFluidFromMaintable(fluidToChange).mode = "ON"
 							print("Mode of ", fluidToChange, " has been changed to ON")
 						elseif option == "3" then
-							maintable[fluidToChange].mode = "OFF"
+							getFluidFromMaintable(fluidToChange).mode = "OFF"
 							print("Mode of ", fluidToChange, " has been changed to OFF")
 						else
 							print("Invalid command")
