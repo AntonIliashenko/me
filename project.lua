@@ -247,6 +247,7 @@ local function keyPressed(name , address, num1, num2, player)
 
 					    if option == "Y" then
 					           if maintable[fluidToChange] ~= nil then
+					                setProxy(maintable[fluidToChange].address, 0)
 					                maintable[fluidToChange] = nil
                                 end
                             print("Fluid", fluidToChange, "has been deleted")
