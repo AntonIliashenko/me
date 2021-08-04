@@ -9,4 +9,4 @@ if not component.internet.isHttpEnabled() then
     os.exit()
 end
 
-os.execute("wget -f https://raw.githubusercontent.com/AntonIliashenko/me/main/project.lua -O /home/pr.lua")
+os.execute("wget -f https://raw.githubusercontent.com/AntonIliashenko/me/main/project.lua -O /home/pr")
