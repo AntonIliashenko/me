@@ -62,7 +62,7 @@ end
 
 local function printLiquids()
 
-    print("NAME\t\t\t\tAMOUNT\t\tTO CRAFT\t\tMODE\t\tADDRESS\t\tSTATUS")
+    print("NAME\t\t\t\tAMOUNT\t\t\tTO CRAFT\t\tMODE\t\tADDRESS\t\tSTATUS")
 
 	local fluids = component.me_controller.getFluidsInNetwork()
 
@@ -91,7 +91,7 @@ local function printLiquids()
 			local tempaddress = string.sub(item.address, 1, 5)
 			local temptab = ""
 			if(item.mode ~= "toDemand") then temptab = "\t" end
-			print(item.name, tab, item.amount, "\t\t", item.tocraft, "\t\t", item.mode, temptab, "\t", tempaddress, "\t\t", item.status)
+			print(item.name, tab, item.amount, "\t", item.tocraft, "\t", item.mode, temptab, tempaddress, "\t", item.status)
 		else
 			item.amount = 0
 		end
@@ -318,6 +318,7 @@ while toRun do
 		print("Press 'h' to reset all the values")
 		print("Press 'j' to show all the 0/0 fluids")
 		print("Click the mouse to pause the program")
+		print("")
 
 		if checkForMe_Controller() then printLiquids() sendSignals()
 		else print("NO ME_CONTROLLER FOUND!")
