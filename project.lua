@@ -308,10 +308,10 @@ local function sendSignals()
 
 	end
 
-	for label,prox in ipairs(allowedProxies) do
-        for label2, item in pairs(allowedProxies[prox]) do
+	for label,prox in pairs(allowedProxies) do
+        for index, item in ipairs(allowedProxies[prox]) do
             if(item.address ~= "DNE") then
-                setProxy(item.address, 15)
+                setProxy(prox, 15)
                 item.status = true
             end
 
