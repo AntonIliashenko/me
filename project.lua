@@ -14,13 +14,14 @@ local function initializeMaintable()
     if file == nil then maintable = {}
     else
         for line in file:lines() do
-            local f,r = line:match("(%w+)(.+)")
-            maintable[f] = {}
-            maintable[f].name = f
 
             local words = {}
             for word in line:gmatch("[^%s]+") do table.insert(words,word) end
 
+            local f = words[1]
+
+            maintable[f] = {}
+            maintable[f].name = f
             maintable[f].amount = tonumber(words[2])
             maintable[f].tocraft = tonumber(words[3])
             maintable[f].mode = words[4]
@@ -62,7 +63,7 @@ end
 
 local function printLiquids()
 
-    print("NAME\t\t\t\tAMOUNT\t\t\tTO CRAFT\t\tMODE\t\tADDRESS\t\tSTATUS")
+    print("NAME\t\t\t\tAMOUNT\t\t\tTO CRAFT\t\tMODE\t\t\tADDRESS\t\t\tSTATUS")
 
 	local fluids = component.me_controller.getFluidsInNetwork()
 
@@ -182,7 +183,7 @@ local function keyPressed(name , address, num1, num2, player)
 			while changingTable do
 
 				if fluidInitialized then
-					print("What do you want to change? 1: AmountToCraft, 2: Address, 3: Crafting Mode")
+					print("What do you want to change? 1: ToCraft, 2: Address, 3: Crafting Mode, 4: Delete Entry")
 				end
 	
 				local textRead = myRead()
