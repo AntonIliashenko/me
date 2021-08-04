@@ -4,6 +4,7 @@ local event = require("event")
 local term = require("term")
 
 local maintable = {}
+local showEveryFluid = false
 
 local function initializeMaintable()
 
@@ -80,7 +81,7 @@ local function printLiquids()
 		    itemexists = true
 		end
 
-		if itemexists then
+		if itemexists or showEveryFluid then
 			local tab = ""
 			if string.len(item.name) <= 7 then tab = "\t\t" else tab = "\t" end
 			
@@ -160,6 +161,8 @@ local function keyPressed(name , address, num1, num2, player)
 	if not changingTable then
 		if num2 == 35 then
 			cleanMaintable()
+		if num2 == 36 then
+            showEveryFluid = not showEveryFluid
 		elseif num2 == 16 then
 			print("Terminating...")
 			event.ignore("key_down", keyPressed)
@@ -285,6 +288,7 @@ while toRun do
 		print("Press 'q' to quit the program")
 		print("Press 'e' to edit the table")
 		print("Press 'h' to reset all the values")
+		print("Press 'j' to show all the 0/0 fluids")
 		print("Click the mouse to pause the program")
 
 		if checkForMe_Controller() then printLiquids() sendSignals()
