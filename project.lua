@@ -19,7 +19,7 @@ local function initializeMaintable()
             maintable[f].name = f
 
             local words = {}
-            for word in line:gmatch("%w+") do table.insert(words,word) end
+            for word in line:gmatch("[^%s]+") do table.insert(words,word) end
 
             maintable[f].amount = tonumber(words[2])
             maintable[f].tocraft = tonumber(words[3])
@@ -290,12 +290,13 @@ local function saveMaintableToFile()
     for label, item in pairs(maintable) do
 
         local line = item.name .. " " .. item.amount .. " " .. item.tocraft .. " " .. item.mode .. " " .. item.address
-        if not f:write("file contents") then
+        if not firstLine then
             line = "\n" .. line
-            firstLine = false
         end
 
         f:write(line)
+
+        firstLine = false
 
     end
 
