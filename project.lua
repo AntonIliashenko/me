@@ -105,7 +105,6 @@ end
 local function keyPressed(name , address, num1, num2, player)
 	if not changingTable then
 		if num2 == 35 then
-		    print("ss")
 			maintable = {}
 		elseif num2 == 16 then
 			print("Terminating...")
