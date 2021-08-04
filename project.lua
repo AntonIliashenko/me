@@ -217,6 +217,7 @@ local function keyPressed(name , address, num1, num2, player)
 						local newvalue = myRead()
 
                         if newvalue == "r" then
+                             getFluidFromMaintable(fluidToChange).address = "DNE"
                             print("Address of", fluidToChange, "has been reset!")
                         else
 
