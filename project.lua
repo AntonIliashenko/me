@@ -276,7 +276,6 @@ local function sendSignals()
 		if (item.amount < item.tocraft and item.mode == "toDemand") or item.mode == "ON" then
 
 			if(item.address ~= "DNE") then
-				item.status = setProxy(item.address, 15)
 
 				if blockedProxies[item.address] == nil then
 
@@ -289,7 +288,7 @@ local function sendSignals()
 				end
 
 			end
-		else
+		elseif item.mode == "OFF" then
 
 		    blockedProxies[item.address] = true
 		    allowedProxies[item.address] = nil
