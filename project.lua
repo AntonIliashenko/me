@@ -101,11 +101,18 @@ local function myRead()
 	return textRead 
 end
 
+local function cleanMaintable()
+    for label,item in pairs(maintable) do
+        setProxy(item.address, 0)
+    end
+    maintable = {}
+end
+
 
 local function keyPressed(name , address, num1, num2, player)
 	if not changingTable then
 		if num2 == 35 then
-			maintable = {}
+			cleanMaintable()
 		elseif num2 == 16 then
 			print("Terminating...")
 			event.ignore("key_down", keyPressed)
