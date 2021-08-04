@@ -161,7 +161,7 @@ local function keyPressed(name , address, num1, num2, player)
 	if not changingTable then
 		if num2 == 35 then
 			cleanMaintable()
-		if num2 == 36 then
+		elseif num2 == 36 then
             showEveryFluid = not showEveryFluid
 		elseif num2 == 16 then
 			print("Terminating...")
