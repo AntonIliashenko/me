@@ -97,6 +97,8 @@ local function printLiquids()
 			item.amount = 0
 		end
 	end
+
+	print("")
 	
 end
 
@@ -244,7 +246,9 @@ local function keyPressed(name , address, num1, num2, player)
 					    local option = myRead()
 
 					    if option == "Y" then
-                            getFluidFromMaintable(fluidToChange) = nil
+					           if maintable[fluidToChange] ~= nil then
+					                maintable[fluidToChange] = nil
+                                end
                             print("Fluid", fluidToChange, "has been deleted")
 					    end
 
