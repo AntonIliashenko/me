@@ -22,10 +22,10 @@ local function initializeMaintable()
 
             maintable[f] = {}
             maintable[f].name = f
-            maintable[f].amount = tonumber(words[2])
-            maintable[f].tocraft = tonumber(words[3])
-            maintable[f].mode = words[4]
-            maintable[f].address = words[5]
+            maintable[f].amount = 0
+            maintable[f].tocraft = tonumber(words[2])
+            maintable[f].mode = words[3]
+            maintable[f].address = words[4]
             maintable[f].status = false
         end
      end
@@ -239,6 +239,15 @@ local function keyPressed(name , address, num1, num2, player)
 							print("Invalid command")
 						end
 
+					elseif textRead == "4" then
+					    print("Are you sure? Type Y to confirm")
+					    local option = myRead()
+
+					    if option == "Y" then
+                            getFluidFromMaintable(fluidToChange) = nil
+                            print("Fluid", fluidToChange, "has been deleted")
+					    end
+
 					else
 						print("Invalid command")
 					end
@@ -292,7 +301,7 @@ local function saveMaintableToFile()
 
     for label, item in pairs(maintable) do
 
-        local line = item.name .. " " .. item.amount .. " " .. item.tocraft .. " " .. item.mode .. " " .. item.address
+        local line = item.name ..  " " .. item.tocraft .. " " .. item.mode .. " " .. item.address
         if not firstLine then
             line = "\n" .. line
         end
