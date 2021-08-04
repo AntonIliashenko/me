@@ -267,22 +267,53 @@ local click = event.listen("touch", myEventHandler)
 local buttonPress = event.listen("key_down", keyPressed)
 
 local function sendSignals()
+
+    local allowedProxies = {}
+    local blockedProxies = {}
+
 	for label,item in pairs(maintable) do
 		
 		if (item.amount < item.tocraft and item.mode == "toDemand") or item.mode == "ON" then
 
-			if(item.address ~= "DNE") then		
+			if(item.address ~= "DNE") then
 				item.status = setProxy(item.address, 15)
+
+				if blockedProxies[item.address] == nil then
+
+                    if allowedProxies[item.address] == nil then
+                            allowedProxies[item.address] = {item}
+                    else
+                         table.insert(allowedProxies[item.address],item)
+                    end
+
+				end
+
 			end
 		else
-			if(item.address ~= "DNE") then
-				setProxy(item.address, 0)
-			end
-	
-			item.status = false
+
+		    blockedProxies[item.address] = true
+		    allowedProxies[item.address] = nil
+		    item.status = false
+
+		    if(item.address ~= "DNE") then
+                setProxy(item.address, 0)
+            end
+
 		end
 
 	end
+
+	for label,prox in ipairs(allowedProxies) do
+        for label2, item in pairs(allowedProxies[prox]) do
+            if(item.address ~= "DNE") then
+                setProxy(item.address, 15)
+                item.status = true
+            end
+
+        end
+
+	end
+
 end
 
 
