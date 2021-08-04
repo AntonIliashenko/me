@@ -101,6 +101,23 @@ local function myRead()
 	return textRead 
 end
 
+local function setProxy(proxyAddress, value)
+
+	local tempProxy = component.proxy(proxyAddress)
+
+	if tempProxy ~= nil and tempProxy.type == "redstone" then
+		tempProxy.setOutput(0, value)
+		tempProxy.setOutput(1, value)
+		tempProxy.setOutput(2, value)
+		tempProxy.setOutput(3, value)
+		tempProxy.setOutput(4, value)
+		tempProxy.setOutput(5, value)
+		return true
+	end
+
+	return false
+end
+
 local function cleanMaintable()
     for label,item in pairs(maintable) do
         setProxy(item.address, 0)
@@ -192,23 +209,6 @@ local function keyPressed(name , address, num1, num2, player)
 			end
 		end
 	end
-end
-
-local function setProxy(proxyAddress, value)
-
-	local tempProxy = component.proxy(proxyAddress)
-
-	if tempProxy ~= nil and tempProxy.type == "redstone" then
-		tempProxy.setOutput(0, value)
-		tempProxy.setOutput(1, value)
-		tempProxy.setOutput(2, value)
-		tempProxy.setOutput(3, value)
-		tempProxy.setOutput(4, value)
-		tempProxy.setOutput(5, value)
-		return true
-	end
-	
-	return false
 end
 
 local click = event.listen("touch", myEventHandler)
