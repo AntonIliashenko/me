@@ -25,7 +25,7 @@ local function initializeMaintable()
             maintable[f].tocraft = tonumber(words[3])
             maintable[f].mode = words[4]
             maintable[f].address = words[5]
-            maintable[f].status = words[6]
+            maintable[f].status = false
         end
      end
 
@@ -289,7 +289,7 @@ local function saveMaintableToFile()
 
     for label, item in pairs(maintable) do
 
-        local line = item.name .. " " .. item.amount .. " " .. item.tocraft .. " " .. item.mode .. " " .. item.address .. " " .. item.status
+        local line = item.name .. " " .. item.amount .. " " .. item.tocraft .. " " .. item.mode .. " " .. item.address
         if not f:write("file contents") then
             line = "\n" .. line
             firstLine = false
