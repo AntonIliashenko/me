@@ -2,6 +2,7 @@ local component = require("component")
 local os = require("os")
 local event = require("event")
 local term = require("term")
+local filesystem = require("filesystem")
 
 local maintable = {}
 local showEveryFluid = false
@@ -279,6 +280,30 @@ end
 
 initializeMaintable()
 
+local function saveMaintableToFile()
+
+    filesystem.remove("/home/table")
+
+    local f = io.open("/home/table","w")
+    local firstLine = true
+
+    for label, item in pairs(maintable) do
+
+        local line = item.name .. " " .. item.amount .. " " .. item.tocraft .. " " .. item.mode .. " " .. item.address .. " " .. item.status
+        if not f:write("file contents") then
+            line = "\n" .. line
+            firstLine = false
+        end
+
+        f:write(line)
+
+    end
+
+    f:close()
+
+
+end
+
 while toRun do
 	
 	if not pause then
@@ -298,5 +323,6 @@ while toRun do
 	os.sleep(3)
 end
 
+saveMaintableToFile()
 turnOffAllSignals()
 print("Terminated!")
