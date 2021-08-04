@@ -62,6 +62,8 @@ end
 
 local function printLiquids()
 
+    print("NAME\t\t\t\tAMOUNT\t\tTO CRAFT\t\tMODE\t\tADDRESS\t\tSTATUS")
+
 	local fluids = component.me_controller.getFluidsInNetwork()
 
 	for label,item in ipairs(fluids) do
@@ -89,7 +91,7 @@ local function printLiquids()
 			local tempaddress = string.sub(item.address, 1, 5)
 			local temptab = ""
 			if(item.mode ~= "toDemand") then temptab = "\t" end
-			print(item.name, tab, item.amount, item.tocraft, item.mode, temptab, tempaddress, item.status)
+			print(item.name, tab, item.amount, "\t\t", item.tocraft, "\t\t", item.mode, temptab, "\t", tempaddress, "\t\t", item.status)
 		else
 			item.amount = 0
 		end
