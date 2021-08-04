@@ -7,10 +7,10 @@ local maintable = {}
 
 local function initializeMaintable()
 
-    local file = io.open("home/table", "r")
+    local file = io.open("/home/table", "r")
 
     if file == nil then maintable = {}
-    elses
+    else
         for line in file:lines() do
             local f,r = line:match("(%w+)(.+)")
             maintable[f] = {}
@@ -19,8 +19,8 @@ local function initializeMaintable()
             local words = {}
             for word in line:gmatch("%w+") do table.insert(words,word) end
 
-            maintable[f].amount = words[2]
-            maintable[f].tocraft = words[3]
+            maintable[f].amount = tonumber(words[2])
+            maintable[f].tocraft = tonumber(words[3])
             maintable[f].mode = words[4]
             maintable[f].address = words[5]
             maintable[f].status = words[6]
@@ -74,6 +74,8 @@ local function printLiquids()
 		for index,fluid in ipairs(fluids) do
 			if(item.name == fluid.name) then itemexists = true end
 		end
+
+		if(item.tocraft > 0) then itemexists = true end
 
 		if itemexists then
 			local tab = ""
