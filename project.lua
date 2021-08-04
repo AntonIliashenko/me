@@ -207,22 +207,27 @@ local function keyPressed(name , address, num1, num2, player)
 
 						if newvalue ~= nil and newvalue >= 0 then
 							getFluidFromMaintable(fluidToChange).tocraft = tonumber(newvalue)
-							print("Amount to craft of ", fluidToChange, " has been changed to ", newvalue)
+							print("Amount to craft of", fluidToChange, "has been changed to", newvalue)
 						else
 							print("Please provide a non-negative number")
 						end
 						
 					elseif textRead == "2" then
-						print("Enter the new value:")
+						print("Enter the new value or 'r' to reset")
 						local newvalue = myRead()
 
-						local tempProxy = component.proxy(newvalue)
-						
-						if tempProxy ~= nil and tempProxy.type == "redstone" then
-							getFluidFromMaintable(fluidToChange).address = newvalue
-							print("Address of ", fluidToChange, " has been changed to ", newvalue)
-						else print("Wrong address!")
-						end
+                        if newvalue == "r" then
+                            print("Address of", fluidToChange, "has been reset!")
+                        else
+
+						    local tempProxy = component.proxy(newvalue)
+
+						    if tempProxy ~= nil and tempProxy.type == "redstone" then
+							    getFluidFromMaintable(fluidToChange).address = newvalue
+							    print("Address of", fluidToChange, "has been changed to", newvalue)
+						    else print("Wrong address!")
+						    end
+						 end
 
 				
 					elseif textRead == "3" then
@@ -230,13 +235,13 @@ local function keyPressed(name , address, num1, num2, player)
 						local option = myRead()
 						if option == "1" then
 							getFluidFromMaintable(fluidToChange).mode = "toDemand"
-							print("Mode of ", fluidToChange, " has been changed to to-Demand")
+							print("Mode of", fluidToChange, "has been changed to to-Demand")
 						elseif option == "2" then
 							getFluidFromMaintable(fluidToChange).mode = "ON"
-							print("Mode of ", fluidToChange, " has been changed to ON")
+							print("Mode of", fluidToChange, "has been changed to ON")
 						elseif option == "3" then
 							getFluidFromMaintable(fluidToChange).mode = "OFF"
-							print("Mode of ", fluidToChange, " has been changed to OFF")
+							print("Mode of", fluidToChange, "has been changed to OFF")
 						else
 							print("Invalid command")
 						end
