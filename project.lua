@@ -39,7 +39,11 @@ local function getFluidFromMaintable(tempFluidName)
 		maintable[tempFluidName].name = tempFluidName
 
 		local cur = maintable[tempFluidName]
-		
+
+		if(cur.amount == nil) then
+            cur.amount = 0
+        end
+
 		if(cur.tocraft == nil) then
 			cur.tocraft = 0
 		end
