@@ -286,11 +286,12 @@ local function sendSignals()
 				if blockedProxies[item.address] == nil then
 
                     if allowedProxies[item.address] == nil then
-                            allowedProxies[item.address] = {item}
-                    else
-                         table.insert(allowedProxies[item.address],item)
+                            allowedProxies[item.address] = {}
                     end
 
+                    table.insert(allowedProxies[item.address],item)
+                    print("GOT HERE")
+                    
 				end
 
 			end
