@@ -352,21 +352,25 @@ local function saveMaintableToFile()
 
 end
 
+local function printStuff()
+    print("FLUID STOCK V1.0 BY WUN_TEP")
+    print("Press 'q' to quit the program")
+	print("Press 'e' to edit the table")
+	print("Press 'h' to reset all the values")
+	print("Press 'j' to show all the 0/0 fluids")
+	print("Click the mouse to pause the program")
+	print("")
+
+end
+
 while toRun do
 	
 	if not pause then
 
-		print("FLUID STOCK V1.0 BY WUN_TEP")
-		print("Press 'q' to quit the program")
-		print("Press 'e' to edit the table")
-		print("Press 'h' to reset all the values")
-		print("Press 'j' to show all the 0/0 fluids")
-		print("Click the mouse to pause the program")
-		print("")
-
 		if checkForMe_Controller() then
 		    sendSignals()
 		    if term ~= nil then if term.isAvailable() then term.clear() end end
+		    printStuff()
 		    printLiquids()
 		    saveMaintableToFile()
 		else
