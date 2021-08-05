@@ -355,7 +355,6 @@ end
 while toRun do
 	
 	if not pause then
-		if term ~= nil then if term.isAvailable() then term.clear() end end
 
 		print("FLUID STOCK V1.0 BY WUN_TEP")
 		print("Press 'q' to quit the program")
@@ -365,8 +364,14 @@ while toRun do
 		print("Click the mouse to pause the program")
 		print("")
 
-		if checkForMe_Controller() then sendSignals() printLiquids() saveMaintableToFile()
-		else print("NO ME_CONTROLLER FOUND!")
+		if checkForMe_Controller() then
+		    sendSignals()
+		    if term ~= nil then if term.isAvailable() then term.clear() end end
+		    printLiquids()
+		    saveMaintableToFile()
+		else
+		    if term ~= nil then if term.isAvailable() then term.clear() end end
+		    print("NO ME_CONTROLLER FOUND!")
 		end
 	end
 	os.sleep(3)
