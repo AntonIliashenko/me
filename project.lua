@@ -286,10 +286,8 @@ local function sendSignals()
 				if blockedProxies[item.address] == nil then
 
                     if allowedProxies[item.address] == nil then
-                            allowedProxies[item.address] = {}
+                            allowedProxies[item.address] = true
                     end
-
-                    table.insert(allowedProxies[item.address],item.name)
                     
 				end
 
@@ -303,20 +301,15 @@ local function sendSignals()
 		    if(item.address ~= "DNE") then
                 setProxy(item.address, 0)
             end
-
 		end
 
 	end
 
-	for label,prox in pairs(allowedProxies) do
-        for index, itemname in ipairs(prox) do
-            item = getFluidFromMaintable(itemname)
-            if(item.address ~= "DNE") then
-                setProxy(prox, 15)
-                item.status = true
-            end
-        end
-
+	for label, item in pairs(maintable) do
+	    if allowedProxies[item.address] ~= nil then
+	        setProxy(item.address, 15)
+            item.status = true
+	    end
 	end
 
 end
