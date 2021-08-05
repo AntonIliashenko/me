@@ -309,13 +309,11 @@ local function sendSignals()
 	end
 
 	for label,prox in pairs(allowedProxies) do
-	    if(allowedProxies[prox] ~= nil) then
-            for index, itemname in ipairs(allowedProxies[prox]) do
-                item = getFluidFromMaintable(itemname)
-                if(item.address ~= "DNE") then
-                  setProxy(prox, 15)
-                  item.status = true
-                end
+        for index, itemname in ipairs(prox) do
+            item = getFluidFromMaintable(itemname)
+            if(item.address ~= "DNE") then
+                setProxy(prox, 15)
+                item.status = true
             end
         end
 
