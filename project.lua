@@ -289,8 +289,7 @@ local function sendSignals()
                             allowedProxies[item.address] = {}
                     end
 
-                    table.insert(allowedProxies[item.address],item)
-                    print("GOT HERE")
+                    table.insert(allowedProxies[item.address],item.name)
                     
 				end
 
@@ -311,7 +310,8 @@ local function sendSignals()
 
 	for label,prox in pairs(allowedProxies) do
 	    if(allowedProxies[prox] ~= nil) then
-            for index, item in ipairs(allowedProxies[prox]) do
+            for index, itemname in ipairs(allowedProxies[prox]) do
+                item = getFluidFromMaintable(itemname)
                 if(item.address ~= "DNE") then
                   setProxy(prox, 15)
                   item.status = true
