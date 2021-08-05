@@ -365,7 +365,7 @@ while toRun do
 		print("Click the mouse to pause the program")
 		print("")
 
-		if checkForMe_Controller() then printLiquids() sendSignals()
+		if checkForMe_Controller() then sendSignals() printLiquids() 
 		else print("NO ME_CONTROLLER FOUND!")
 		end
 	end
