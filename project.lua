@@ -278,6 +278,8 @@ local function sendSignals()
     local blockedProxies = {}
 
 	for label,item in pairs(maintable) do
+
+	    item.status = false
 		
 		if (item.amount < item.tocraft and item.mode == "toDemand") or item.mode == "ON" then
 
@@ -296,7 +298,6 @@ local function sendSignals()
 
 		    blockedProxies[item.address] = true
 		    allowedProxies[item.address] = nil
-		    item.status = false
 
 		    if(item.address ~= "DNE") then
                 setProxy(item.address, 0)
