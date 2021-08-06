@@ -383,7 +383,9 @@ local function printStuff()
     print("Press 'q' to quit the program")
 	print("Press 'e' to edit the table")
 	print("Press 'h' to reset all the values")
-	print("Press 'j' to toggle all the 0/0 fluids: " .. (if showEveryFluid then "SHOWN" else "HIDDEN")
+
+
+	print("Press 'j' to toggle all the 0/0 fluids: " .. (showEveryFluid and "SHOWN" or "HIDDEN")
 	print("Click the mouse to pause the program")
 	print("")
 
