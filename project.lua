@@ -323,9 +323,47 @@ local function sendSignals()
 
 end
 
+local function contains(table, val)
+   for i=1,#table do
+      if table[i] == val then
+         return true
+      end
+   end
+   return false
+end
+
+local function sendSignals2()
+
+    local blockedProxies = {}
+
+    for _,item in pairs(maintable)
+        if item.mode == "OFF" then
+            if(item.address ~= "DNE") then
+            table.insert(blockedProxies, item.address)
+            end
+        end
+    end
+
+    for _,item in pairs(maintable) do
+	    if (item.amount < item.tocraft and item.mode == "toDemand") or item.mode == "ON" then
+            if (item.address ~= "DNE") and (not (contains(blockedProxies, item.address) then
+                setProxy(item.address, 15)
+                item.status = true
+
+            end
+	    else
+            item.status = false
+            if (item.address ~= "DNE") then
+                setProxy(item.address, 0)
+            end
+	    end
+	end
+
+end
+
 
 local function turnOffAllSignals()
-	for label,item in pairs(maintable) do
+	for _,item in pairs(maintable) do
 		if(item.address ~= "DNE") then
 			setProxy(item.address, 0)
 			item.status = false
@@ -376,7 +414,7 @@ while toRun do
 	if not pause then
 
 		if checkForMe_Controller() then
-		    sendSignals()
+		    sendSignals2()
 		    if term ~= nil then if term.isAvailable() then term.clear() end end
 		    printStuff()
 		    printLiquids()
