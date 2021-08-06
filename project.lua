@@ -273,7 +273,8 @@ local function keyPressed(name , address, num1, num2, player)
 					                maintable[fluidToChange] = nil
                                 end
                             print("Fluid", fluidToChange, "has been deleted")
-					    end
+                            quitEditor()
+                        end
 
 					else
 						print("Invalid command")
@@ -424,7 +425,7 @@ local function printStuff()
     print("FLUID STOCK V1.0 BY WUN_TEP")
     print("Press 'q' to quit the program")
 	print("Press 'e' to edit the table")
-	print("Press 'h' to reset all the values (currenly disabled)")
+	print("Press 'h' to reset all the values")
 	print("Press 'j' to show all the 0/0 fluids")
 	print("Click the mouse to pause the program")
 	print("")
