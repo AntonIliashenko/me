@@ -171,7 +171,6 @@ local function cleanMaintable()
     maintable = {}
 end
 
-
 local function keyPressed(name , address, num1, num2, player)
 	if not changingTable then
 		if num2 == 35 then
@@ -384,7 +383,7 @@ local function printStuff()
     print("Press 'q' to quit the program")
 	print("Press 'e' to edit the table")
 	print("Press 'h' to reset all the values")
-	print("Press 'j' to show all the 0/0 fluids")
+	print("Press 'j' to toggle all the 0/0 fluids: " .. (if showEveryFluid then "SHOWN" else "HIDDEN")
 	print("Click the mouse to pause the program")
 	print("")
 
