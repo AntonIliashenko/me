@@ -335,7 +335,7 @@ end
 local function sendSignals2()
 
     local blockedProxies = {}
-    local onButNotBlockedProxies = {}
+    local onProxies = {}
 
     for _,item in pairs(maintable) do
         if item.mode == "OFF" then
@@ -345,28 +345,33 @@ local function sendSignals2()
         end
     end
 
-    for _,item in pairs(maintable) do
-            if item.mode == "ON" then
-                if (item.address ~= "DNE") and (not (contains(blockedProxies, item.address))) then
-                    table.insert(onButNotBlockedProxies, item.address)
-                end
-            end
-        end
 
     for _,item in pairs(maintable) do
-	    if (item.amount < item.tocraft and item.mode == "toDemand") or contains(onButNotBlockedProxies, item.address) then
+	    if (item.amount < item.tocraft and item.mode == "toDemand") or item.mode == "ON" then
             if (item.address ~= "DNE") and (not (contains(blockedProxies, item.address))) then
                 setProxy(item.address, 15)
+                table.insert(onProxies,item.address)
                 item.status = true
 
             end
-	    else
-            item.status = false
-            if (item.address ~= "DNE") then
+
+        end
+     end
+
+	  for _,item in pairs(maintable) do
+	    if (item.address ~= "DNE") and contains(onProxies,item.address) then
+	         setProxy(item.address, 15)
+             item.status = true
+        else
+             if (item.address ~= "DNE") then
                 setProxy(item.address, 0)
-            end
+             end
+             item.status = false
 	    end
-	end
+
+
+
+	  end
 
 end
 
