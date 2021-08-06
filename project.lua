@@ -100,7 +100,8 @@ local function printLiquids()
 			local tempaddress = string.sub(item.address, 1, 5)
 			local temptab = ""
 			if(item.mode ~= "toDemand") then temptab = "\t" end
-			print(item.name, tab, item.amount, "\t", item.tocraft, "\t", item.mode, temptab, tempaddress, "\t", item.status)
+
+			print(item.name, tab, item.amount/1000, "\t", item.tocraft, "\t", item.mode, temptab, tempaddress, "\t", item.status)
 		else
 			item.amount = 0
 		end
