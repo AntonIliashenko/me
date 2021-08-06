@@ -174,7 +174,15 @@ end
 local function keyPressed(name , address, num1, num2, player)
 	if not changingTable then
 		if num2 == 35 then
-			cleanMaintable()
+
+		     pause = true
+             changingTable = true
+
+             print("Are you sure? Type Y to confirm")
+             local option = myRead()
+
+             if option == "Y" then cleanMaintable() end
+             quitEditor()
 		elseif num2 == 36 then
             showEveryFluid = not showEveryFluid
 		elseif num2 == 16 then
@@ -416,7 +424,7 @@ local function printStuff()
     print("FLUID STOCK V1.0 BY WUN_TEP")
     print("Press 'q' to quit the program")
 	print("Press 'e' to edit the table")
-	print("Press 'h' to reset all the values")
+	print("Press 'h' to reset all the values (currenly disabled)")
 	print("Press 'j' to show all the 0/0 fluids")
 	print("Click the mouse to pause the program")
 	print("")
