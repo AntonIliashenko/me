@@ -67,7 +67,7 @@ end
 
 local function printLiquids()
 
-    print("NAME\t\t\t\tAMOUNT\t\t\tTO CRAFT\t\tMODE\t\t\tADDRESS\t\t\tSTATUS")
+    print("NAME\t\t\t\tAMOUNT\t\t\tTO CRAFT\t\tMODE\t\t\tADDRESS\t\t\tSTATUS\n")
 
 	local fluids = component.me_controller.getFluidsInNetwork()
 
