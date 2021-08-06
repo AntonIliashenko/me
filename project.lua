@@ -315,9 +315,8 @@ local function sendSignals()
     for _,item in pairs(maintable) do
 	    if (item.amount < item.tocraft * 1000 and item.mode == "toDemand") or item.mode == "ON" then
             if (item.address ~= "DNE") and (not (contains(blockedProxies, item.address))) then
-                setProxy(item.address, 15)
                 table.insert(onProxies,item.address)
-                item.status = true
+                item.status = setProxy(item.address, 15)
 
             end
 
@@ -326,8 +325,7 @@ local function sendSignals()
 
 	  for _,item in pairs(maintable) do
 	    if (item.address ~= "DNE") and contains(onProxies,item.address) then
-	         setProxy(item.address, 15)
-             item.status = true
+             item.status = setProxy(item.address, 15)
         else
              if (item.address ~= "DNE") then
                 setProxy(item.address, 0)
