@@ -289,49 +289,6 @@ local click = event.listen("touch", myEventHandler)
 
 local buttonPress = event.listen("key_down", keyPressed)
 
-local function sendSignals()
-
-    local allowedProxies = {}
-    local blockedProxies = {}
-
-	for label,item in pairs(maintable) do
-
-	    item.status = false
-		
-		if (item.amount < item.tocraft and item.mode == "toDemand") or item.mode == "ON" then
-
-			if(item.address ~= "DNE") then
-
-				if blockedProxies[item.address] == nil then
-
-                    if allowedProxies[item.address] == nil then
-                            allowedProxies[item.address] = true
-                    end
-                    
-				end
-
-			end
-		elseif item.mode == "OFF" then
-
-		    blockedProxies[item.address] = true
-		    allowedProxies[item.address] = nil
-
-		    if(item.address ~= "DNE") then
-                setProxy(item.address, 0)
-            end
-		end
-
-	end
-
-	for label, item in pairs(maintable) do
-	    if allowedProxies[item.address] ~= nil then
-	        setProxy(item.address, 15)
-            item.status = true
-	    end
-	end
-
-end
-
 local function contains(table, val)
    for i=1,#table do
       if table[i] == val then
@@ -341,7 +298,7 @@ local function contains(table, val)
    return false
 end
 
-local function sendSignals2()
+local function sendSignals()
 
     local blockedProxies = {}
     local onProxies = {}
@@ -437,7 +394,7 @@ while toRun do
 	if not pause then
 
 		if checkForMe_Controller() then
-		    sendSignals2()
+		    sendSignals()
 		    if term ~= nil then if term.isAvailable() then term.clear() end end
 		    printStuff()
 		    printLiquids()
