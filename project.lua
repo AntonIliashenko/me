@@ -313,7 +313,7 @@ local function sendSignals()
 
 
     for _,item in pairs(maintable) do
-	    if (item.amount < item.tocraft and item.mode == "toDemand") or item.mode == "ON" then
+	    if (item.amount < item.tocraft * 1000 and item.mode == "toDemand") or item.mode == "ON" then
             if (item.address ~= "DNE") and (not (contains(blockedProxies, item.address))) then
                 setProxy(item.address, 15)
                 table.insert(onProxies,item.address)
@@ -383,7 +383,7 @@ local function printStuff()
     print("Press 'q' to quit the program")
 	print("Press 'e' to edit the table")
 	print("Press 'h' to reset all the values")
-	print("Press 'j' to toggle all the 0/0 fluids: " .. (showEveryFluid and "SHOWN" or "HIDDEN")
+	print("Press 'j' to toggle all the 0/0 fluids: " .. (showEveryFluid and "SHOWN" or "HIDDEN"))
 	print("Click the mouse to pause the program")
 	print("")
 
