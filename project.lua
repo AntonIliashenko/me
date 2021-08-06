@@ -71,6 +71,10 @@ local function printLiquids()
 
 	local fluids = component.me_controller.getFluidsInNetwork()
 
+	for _,gas in ipairs(component.me_controller.getGasesInNetwork()) do
+        table.insert(fluids, gas)
+    end
+
 	for label,item in ipairs(fluids) do
 		
 		local cur = getFluidFromMaintable(item.name)
